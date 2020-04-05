@@ -6,6 +6,18 @@ import os
 
 from app.models import State, StateSchema, User, UserSchema, News, NewsSchema
 
+from chatterbot import ChatBot
+# from chatterbot.trainers import ChatterBotCorpusTrainer
+
+chat_bot = ChatBot('break-chain')
+
+# Create a new trainer for the chatbot
+# trainer = ChatterBotCorpusTrainer(chatbot)
+# Train the chatbot based on the english corpus
+# trainer.train("chatterbot.corpus.english")
+
+# NOTE: There is no point in training
+
 NEWS_API_KEY = os.environ["NEWS_API_KEY"]
 
 
@@ -147,5 +159,14 @@ def bot():
 ''')
         responded = True
     if not responded:
-        msg.body("I did't get what you said, you can type *help* for menu")
+        chatter_resp = chat_bot.get_response(incoming_msg)
+        # print(chatter_resp)
+        # print(chatter_resp.serialize())
+        serialize_resp = chatter_resp.serialize()
+        res_text = serialize_resp["text"]
+        # print(res_text)
+
+        empty = "‎‎ ‎"  # invisible character, to get new line hack
+        msg.body(f"{res_text}")
+        msg.body(f"{empty} \n you can type *help* for menu")
     return str(resp)
