@@ -16,7 +16,6 @@ def bot():
     msg = resp.message()
     sender_number = request.values.get('From')
     print("IN BOT")
-    # print(sender_number)
     print(incoming_msg)
     responded = False
     if 'add state' in incoming_msg:
@@ -98,12 +97,7 @@ def bot():
         all_news = news_schema.dump(all_news)
 
         for news in all_news:
-            # print(news["Title"])
             title = news["Title"]
-            # title = (title[:75] + '..') if len(title) > 75 else title
-            # description = news["Description"]
-            # description = (description[:75] + '..') if len(description) > 75 else description
-            # print(f"Title: {title} \n Des: {description}")
 
             empty = "‎‎ ‎"  # invisible character, to get new line hack
             msg.body(f" \n *Title* :  {title} \n {empty}\n ")
@@ -138,7 +132,6 @@ def bot():
 👉 how to be safe
 ''')
         responded = True
-
     if not responded:
         msg.body("I did't get what you said, you can type *help* for menu")
     return str(resp)

@@ -4,7 +4,7 @@
 
 
 
-## How to Run
+## 🤩 How to Run
 
 Prerequisite : 
 Install Sqlite
@@ -17,7 +17,7 @@ Basic setup:
     $ pipenv shell
     $ pipenv install
     
-## Set env value for News Api
+## 🤐 Set env value for News Api
 > Get your api from https://newsapi.org/
 >
 make a .env file in project root directory like example.env,
@@ -36,14 +36,24 @@ Scrape and Populate database
     $ flask scrape
     $ flask update-news
     
-Run Flask application:
+## 😋 Run Flask application:
 
     $ flask run
     
+## 🎇 Now make the port available to twilio
+
+Install ngrok
+```
+ngrok http 5000
+```
+Now add the ngrok url to https://www.twilio.com/console/sms/whatsapp/sandbox
+to WHEN A MESSAGE COMES IN to with whatsapp
+OR to https://www.twilio.com/console/phone-numbers and click on phone
+no you bought, and add ngrok url to A MESSAGE COMES IN field
 
 This application is written using Python 3.7.
 
-# Bot commands
+# ✨ Bot commands
 
 👉 add state {state name}
 

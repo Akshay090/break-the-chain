@@ -14,41 +14,6 @@ newsapi = NewsApiClient(api_key=os.environ["NEWS_API_KEY"])
 def register(app):
 
     @app.cli.command()
-    def test():
-        search_term = "Anda"
-        search_term = f"%{search_term.strip()}%"
-        print(search_term)
-        state_Telengana = State.query.filter((State.State.like(search_term))).first()
-        print(state_Telengana)
-        stateSchema = StateSchema()
-        state = stateSchema.dump(state_Telengana)
-        print(state)
-
-        # state_Telengana = State.query.filter_by(State="Bihar").first()
-        # print(state_Telengana)
-        # stateSchema = StateSchema()
-        # state = stateSchema.dump(state_Telengana)
-        # print(state)
-        #
-        check_user_state = User.query.filter_by(MobileNo="22", State_Id=state['Id']).first()
-        if not check_user_state:
-            print("in check")
-            user_new = User(State_Id=state['Id'], MobileNo="22")
-            db.session.add(user_new)
-            db.session.commit()
-
-    @app.cli.command()
-    def test_1():
-        # get_user = User.query.filter_by(MobileNo="22").all()
-        # userSchema = UserSchema(many=True)
-        # print(userSchema.dump(get_user))
-        # state = State.query.filter_by(Id=5).first()
-        # stateSchema = StateSchema()
-        # state = stateSchema.dump(state)
-        # print(state)
-        pass
-
-    @app.cli.command()
     def update_news():
         top_headlines = newsapi.get_top_headlines(q='covid-19',
                                                   language='en',
@@ -60,7 +25,6 @@ def register(app):
         for article in articles:
             title = article["title"]
             description = article["description"]
-            # print(title, description)
 
             new_news = News(Title=title, Description=description)
             db.session.add(new_news)
@@ -83,11 +47,7 @@ def register(app):
             page = requests.get(url)
             soup = BeautifulSoup(page.content, 'html.parser')
             div = soup.find('div', class_='data-table')
-            # time = div.find('strong').text
             extracted_time = "2020-03-28 17:45:00"
-            # print("time",time)
-            # extracted_time = re.search(date_time_pattern, time)
-            # extracted_time = extracted_time.group(0)
 
             table = div.find('table', class_='table')
             return table, extracted_time
