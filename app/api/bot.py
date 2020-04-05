@@ -54,6 +54,10 @@ def bot():
         user_list = User.query.filter_by(MobileNo=sender_number).all()
         userSchema = UserSchema(many=True)
         user_list = userSchema.dump(user_list)
+
+        print(user_list)
+        if not user_list:
+            msg.body(f"No states added currently add it like *add state Gujarat*")
         for user_detail in user_list:
             state_id = user_detail["states"]
 
@@ -72,21 +76,30 @@ def bot():
                 f" Currently in \n *{state_name}*, there are \n {state_confirmed} cases confirmed \n {state_cured} cases "
                 f"cured \n {state_dead} deaths. \n {empty}\n")
 
-            responded = True
+        responded = True
     if 'remove state' in incoming_msg:
         state_name = incoming_msg.split("remove state", 1)[1]
         search_term = state_name.strip()
         search_term = f"%{search_term}%"
 
-        state = State.query.filter((State.State.like(search_term))).first()
-        stateSchema = StateSchema()
-        state = stateSchema.dump(state)
-        state_id = state["Id"]
-        state_name = state["State"]
+        user_list = User.query.filter_by(MobileNo=sender_number).all()
+        userSchema = UserSchema(many=True)
+        user_list = userSchema.dump(user_list)
 
-        User.query.filter_by(MobileNo=sender_number, State_Id=state_id).delete()
-        db.session.commit()
-        msg.body(f"{state_name} removed from tracking")
+        print(user_list)
+        if not user_list:
+            msg.body(f"No states to remove currently add it like *add state Gujarat*")
+
+        if user_list:
+            state = State.query.filter((State.State.like(search_term))).first()
+            stateSchema = StateSchema()
+            state = stateSchema.dump(state)
+            state_id = state["Id"]
+            state_name = state["State"]
+
+            User.query.filter_by(MobileNo=sender_number, State_Id=state_id).delete()
+            db.session.commit()
+            msg.body(f"{state_name} removed from tracking")
 
         responded = True
 
@@ -130,6 +143,7 @@ def bot():
 👉 what is covid 19
 👉 symptoms of covid 19
 👉 how to be safe
+👉 help
 ''')
         responded = True
     if not responded:

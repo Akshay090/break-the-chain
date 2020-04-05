@@ -68,3 +68,5 @@ This application is written using Python 3.7.
 👉 symptoms of covid 19
 
 👉 how to be safe
+
+👉 help
