@@ -7,16 +7,16 @@ import os
 from app.models import State, StateSchema, User, UserSchema, News, NewsSchema
 
 from chatterbot import ChatBot
-# from chatterbot.trainers import ChatterBotCorpusTrainer
 
 chat_bot = ChatBot('break-chain')
-
-# Create a new trainer for the chatbot
-# trainer = ChatterBotCorpusTrainer(chatbot)
-# Train the chatbot based on the english corpus
+# from chatterbot.trainers import ChatterBotCorpusTrainer
+# Create a new trainer for the chat bot
+# trainer = ChatterBotCorpusTrainer(chat_bot)
+# Train the chat bot based on the english corpus
 # trainer.train("chatterbot.corpus.english")
 
-# NOTE: There is no point in training
+# NOTE: There is no point in training, problem with installation of chatterbot-corpus with pipenv, but works when
+# installed from requirements.txt in a virtual environment
 
 NEWS_API_KEY = os.environ["NEWS_API_KEY"]
 
