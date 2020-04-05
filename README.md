@@ -70,3 +70,13 @@ This application is written using Python 3.7.
 👉 how to be safe
 
 👉 help
+
+## Show your support
+
+Give a 🌟 if you liked this project!
+
+## 📝 License
+
+Copyright © 2020 [Akshay Ashok](https://github.com/Akshay090).
+
+This project is [MIT](https://choosealicense.com/licenses/mit/) licensed.
