@@ -33,6 +33,7 @@ Scrape and Populate database
 > It get covid-19 data from https://www.mohfw.gov.in/
 >and news from https://newsapi.org/
 
+>These are flask scripts, you can setup a cron job to run this this periodically to get latest data
     $ flask scrape
     $ flask update-news
     
@@ -74,6 +75,9 @@ This application is written using Python 3.7.
 ## Show your support
 
 Give a 🌟 if you liked this project!
+
+## Additional Resource
+[Blog post at dev.to](https://dev.to/akshay090/break-the-chain-sms-chatbot-for-awareness-in-times-of-covid-19-2e5p)
 
 ## 📝 License
 
