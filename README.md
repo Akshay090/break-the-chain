@@ -34,6 +34,7 @@ Scrape and Populate database
 >and news from https://newsapi.org/
 
 >These are flask scripts, you can setup a cron job to run this this periodically to get latest data
+
     $ flask scrape
     $ flask update-news
     
